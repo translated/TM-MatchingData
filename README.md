@@ -1,4 +1,4 @@
-# TM-DataMatching
+# TM-MatchingData
 This repository contains the software to run the translation memory (TM) clustering service developed during the CEF Data MarketPlace project.
 
 The goal of the tool is to identify the translation units (TU) that are "similar" to a given seed TM. The idea is to allow a user to create a focussed TM on a particular topic.  This is obtained by running a software able to learn the peculiarities of the seed data and use them to rank and isolate the most similar TUs in the large TM.
