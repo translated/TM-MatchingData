@@ -53,6 +53,29 @@ It produces the response:
 
 ## API specifications
 
+The web service is exposed as a REST API, where REST is to be interpreted in the weak meaning (the web service here described does not use WSDL/SOAP but is defined directly over the HTTP protocol).
+
+One endpoint is exposed at the level of files containing TUs.
+
+### /clustering_service.php
+
+HTTP Method: POST
+
+Parameters:
+* maincorpus (file, mandatory): file of TUs (tab-separated source sentence and target sentence), one for line;
+* seedcorpus (file, mandatory):  file of TUs (tab-separated source sentence and target sentence), one for line;
+* src (string, mandatory): source language encoded with a two-char ISO 639-1 code;
+* tgt (string, mandatory): target language encoded with a two-char ISO 639-1 code;
+* maxtus (integer, optional): it sets the maximum number of TUs to be returned in the response; if unspecified, all the found TUs are returned;
+* email (string, optional): an email address to which the results are to be sent;
+
+Response:
+
+The service sends a reply in JSON format to either acknowledge the success or to report an error. It include the attributes "status" and "info".
+
+Success: the attribute "status" is 0 and the attribute "info" contains the TUs found by the process.
+
+Failure: the attribute "status" is 1 and the attribute "info" contains the error description.
 
 
 ## Web GUI (Graphical User Interface)
