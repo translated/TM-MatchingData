@@ -11,8 +11,9 @@ The tool is accessible by an API that allows a user to process one or multiple T
 
 ## Installation and Usage
 
-The Docker image of the code is available here  (around 3GB) 
+The Docker image of the code is available [here](https://drive.google.com/file/d/1CIYSDx-Nb0GpYKKB-WIPEnEiXa5v9nfb/view?usp=sharing) (around 230 MB)
 
+No specific hardware or software is required (only the optional "email" functionality requires an email sending service running on the host)
 
 Once the Docker image has been downloaded, it has to be added to your docker environment
 ```bash
@@ -21,32 +22,42 @@ $ docker load < image.clustering_service.tar.gz
 
 To start the service, run the following command:
 ```bash
-$ docker run --rm -it --publish 8080:8080 clustering_service
+$ docker run --net=host --rm -it clustering_service
 ```
 
-The process prints different information, when it prints the message
+Then wait until the process prints the message
 ```bash
-web service ready at port 8080
+PHP 7.4.11 Development Server (http://0.0.0.0:8082) started
 ```
 this means it is ready to accept requests.
 
 Requests can be issued at the following URLs:
-* http://localhost:8080/clustering_service.php
-* http://${PUBLIC-IP}:8080/clustering_service.php
+* http://localhost:8082/clustering_service.php
+* http://${PUBLIC-IP}:8082/clustering_service.php
 
 
 ### Example
 
-TBD
+The request
+```bash
+curl -X POST -F src=en -F tgt=it -F maincorpus=@$mainCorpusFile -F seedcorpus=@$seedCorpusFile -F maxtus=2 http://localhost:8082/clustering_service.php
+```
+uploads mainCorpusFile and seedCorpusFile as the files containing respectively the available TUs to be searched and the seed TUs, and with the parameter maxtus=2 specifies that the response should include no more than 2 TUs.
+It produces the response:
+```bash
+{"status": 0,
+  "info": "src_sentence_1 \t tgt_sentence_1 \t score_1 \n 
+           src_sentence_2 \t tgt_sentence_2 \t score_2 \n "}
+```
 
 
 ## API specifications
 
-[The API specs of the clustering Service are available here](https:)
+
 
 ## Web GUI (Graphical User Interface)
 
-To test the tool, a web graphical interface is made available in the Docker. It consists of a simple web page, where the seed and the large TMs can be uploaded and processed by the tool returning the list of the selected TUs. The GUI allows the user to provide an email addressÂ to which the output of the tool is sent. 
+To test the tool, a web graphical interface is made available in the Docker. It consists of a simple web page, where the seed and the large TMs can be uploaded and processed by the tool returning the list of the selected TUs. The GUI allows the user to provide an email address to which the output of the tool is sent. 
 
 ## Credits
 
