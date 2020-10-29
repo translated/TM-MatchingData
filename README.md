@@ -1,12 +1,12 @@
 # TM-MatchingData
-This repository contains the software to run the translation memory (TM) clustering service developed during the [CEF Data MarketPlace project](https://www.datamarketplace.eu). A service based on this tool is offered by the TAUS Data MarketPlace platform.
+This repository contains the software to run the translation memory (TM) clustering service developed within the [CEF Data MarketPlace project](https://www.datamarketplace.eu). A service based on this tool is offered by the TAUS Data MarketPlace platform.
 
-The goal of the tool is to identify the translation units (TU) that are "similar" to a given seed TM. The idea is to allow a user to create a focussed TM on a particular topic.  This is obtained by running a software able to learn the peculiarities of the seed data and use them to rank and isolate the most similar TUs in the large TM.
+The goal of the tool is to identify the translation units (TUs) that are "similar" to a given seed TM. The idea is to allow a user to create a focussed TM on a particular topic.  This is obtained by running a software able to learn the peculiarities of the seed data and use them to rank and isolate the most similar TUs in a large TM.
 
 ## The tool
-The tool includes the TAUS Matching Data software. It is a search technique that uses an example data set (the seed) to search a data repository (the large TM), calculate matching scores on segment-level and return high-fidelity matched data. For each TU in the seed, the best matching data in the large TM is identified, on a segment-level basis similarity. Then, the selected data are ranked based on an enhanced scoring schema. The top k TUs are identified as the most similar to the seed.
+The tool includes the [TAUS Matching Data software](https://md.taus.net/). It is a search technique that uses an example data set (the seed) to search a data repository (the large TM), calculate matching scores at the segment level and return high-fidelity matched data. For each TU in the seed, the best matching data in the large TM is identified, on a similarity segment-level basis similarity. Then, the selected TUs are ranked based on an enhanced scoring schema. The top k TUs are identified as the most similar to the seed.
 
-The tool is accessible by an API that allows a user to process one or multiple TUs at the time. More details about the API specifications are available below.
+The tool is accessible by an API. More details about the API specifications are available below.
 
 
 ## Installation and Usage
