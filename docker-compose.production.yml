@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  match-cef:
+    image: translatednet/match-cef:latest
+    networks:
+      - traefik
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+            - node.labels.zone == dc
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.match-cef.service=clean-cef
+        - traefik.http.routers.match-cef.entryPoints=web
+        - traefik.http.routers.match-cef.rule=Host(`cef-datamarketplace-tmmatchingdata.translated.com`)
+        - traefik.http.services.match-cef.loadBalancer.server.port=8082
+        - traefik.http.services.match-cef.loadBalancer.passHostHeader=true
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        window: 60s
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+networks:
+  traefik:
+    external: true
