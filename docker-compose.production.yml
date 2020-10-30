@@ -12,7 +12,7 @@ services:
             - node.labels.zone == dc
       labels:
         - traefik.enable=true
-        - traefik.http.routers.match-cef.service=clean-cef
+        - traefik.http.routers.match-cef.service=match-cef
         - traefik.http.routers.match-cef.entryPoints=web
         - traefik.http.routers.match-cef.rule=Host(`cef-datamarketplace-tmmatchingdata.translated.com`)
         - traefik.http.services.match-cef.loadBalancer.server.port=8082
